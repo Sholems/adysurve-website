@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "clientName": {
+      "type": "string"
+    },
+    "clientTitle": {
+      "type": "string"
+    },
+    "clientCompany": {
+      "type": "string"
+    },
+    "clientAvatar": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "rating": {
+      "default": 5,
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "isActive": {
+      "default": true,
+      "type": "boolean"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "clientName",
+    "content"
+  ]
+}

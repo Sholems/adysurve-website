@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const blogPosts = await getCollection('blog');
+
+const publishedPosts = blogPosts
+  .filter((p) => p.data.isPublished)
+  .sort((a, b) => {
+    const aDate = a.data.publishedAt ?? new Date(0);
+    const bDate = b.data.publishedAt ?? new Date(0);
+    return bDate.getTime() - aDate.getTime();
+  });
+---
+
+<Layout
+  title="Blog | ADYSURVE LTD"
+  description="Read ADYSURVE insights on IT infrastructure, CCTV security, solar energy, digital skills, and smart business technology."
+>
+  <section class="bg-dark-deeper py-14 text-white sm:py-20">
+    <div class="container-page">
+      <p class="text-sm font-bold uppercase tracking-widest text-primary">ADYSURVE LTD</p>
+      <h1 class="mt-4 max-w-4xl font-display text-3xl font-extrabold leading-tight md:text-6xl">Blog</h1>
+      <p class="mt-5 max-w-3xl text-base leading-8 text-white/75 sm:text-lg">Insights on secure infrastructure, renewable energy, CCTV, digital training, and smart business technology.</p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-28">
+    <div class="container-page">
+      {publishedPosts.length > 0 ? (
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {publishedPosts.map((post) => (
+            <a
+              href={`/blog/${post.id}`}
+              class="group flex flex-col overflow-hidden rounded-2xl border border-black/8 bg-white shadow-lg shadow-black/5 transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              {post.data.featuredImage && (
+                <div class="aspect-[16/9] overflow-hidden">
+                  <img src={post.data.featuredImage} alt="" width="600" height="338" loading="lazy" class="h-full w-full object-cover transition group-hover:scale-105" />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-5 sm:p-6">
+                <div class="flex items-center gap-3">
+                  {post.data.category && (
+                    <span class="inline-block self-start rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-dark">{post.data.category}</span>
+                  )}
+                  {post.data.publishedAt && (
+                    <span class="text-xs text-dark/50">{new Date(post.data.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                  )}
+                </div>
+                <h2 class="mt-3 font-display text-lg font-extrabold leading-snug text-dark-deeper group-hover:text-primary-dark">{post.data.title}</h2>
+                <p class="mt-2 flex-1 text-sm leading-7 text-dark/65">{post.data.excerpt}</p>
+                <span class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:text-primary-dark">
+                  Read More
+                  <svg class="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center text-dark/65">
+          <p>No blog posts yet. Check back soon!</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

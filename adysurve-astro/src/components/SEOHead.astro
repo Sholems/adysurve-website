@@ -1,0 +1,57 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  schema?: Record<string, any> | null;
+}
+
+const { title, description, image, schema } = Astro.props;
+const siteUrl = Astro.site?.href ?? 'https://adysurve.com';
+const defaultImage = `${siteUrl}images/adysurve-hero-survey-engineering.jpg`;
+const ogImage = image || defaultImage;
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url.href} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="ADYSURVE LTD" />
+<meta property="og:locale" content="en_NG" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- JSON-LD Schema -->
+{
+  schema && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      ...schema,
+    })} />
+  )
+}
+
+<!-- Organization Schema (default) -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'ADYSURVE LTD',
+  url: siteUrl,
+  logo: `${siteUrl}images/ady-logo.png`,
+  description: 'ADYSURVE LTD delivers professional surveying, geospatial, engineering, and land consultancy services with accuracy, innovation, and reliability.',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'NG',
+  },
+})} />

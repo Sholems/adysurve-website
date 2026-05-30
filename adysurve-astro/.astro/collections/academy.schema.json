@@ -1,0 +1,271 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "service": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "icon",
+          "label",
+          "value"
+        ]
+      }
+    },
+    "intro": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "why": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "heading": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "label",
+        "heading",
+        "text",
+        "items"
+      ]
+    },
+    "curriculum": {
+      "type": "object",
+      "properties": {
+        "heading": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "modules": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "heading",
+        "text",
+        "modules"
+      ]
+    },
+    "corporate": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "heading": {
+          "type": "string"
+        },
+        "paragraphs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "panelHeading": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "label",
+        "heading",
+        "paragraphs",
+        "methods",
+        "panelHeading",
+        "items"
+      ]
+    },
+    "cards": {
+      "type": "object",
+      "properties": {
+        "apply": {
+          "type": "object",
+          "properties": {
+            "heading": {
+              "type": "string"
+            },
+            "intro": {
+              "type": "string"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "heading",
+            "intro",
+            "items"
+          ]
+        },
+        "benefits": {
+          "type": "object",
+          "properties": {
+            "heading": {
+              "type": "string"
+            },
+            "intro": {
+              "type": "string"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "intro",
+            "items"
+          ]
+        },
+        "careers": {
+          "type": "object",
+          "properties": {
+            "heading": {
+              "type": "string"
+            },
+            "intro": {
+              "type": "string"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "heading",
+            "intro",
+            "items"
+          ]
+        }
+      },
+      "required": [
+        "apply",
+        "benefits",
+        "careers"
+      ]
+    },
+    "cta": {
+      "type": "object",
+      "properties": {
+        "heading": {
+          "type": "string"
+        },
+        "paragraphs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "heading",
+        "paragraphs"
+      ]
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "subtitle",
+    "kicker",
+    "service",
+    "duration",
+    "facts",
+    "intro",
+    "why",
+    "curriculum",
+    "corporate",
+    "cards",
+    "cta"
+  ]
+}

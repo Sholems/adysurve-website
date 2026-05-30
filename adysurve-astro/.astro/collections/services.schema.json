@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "featuredImage": {
+      "type": "string"
+    },
+    "shortDescription": {
+      "type": "string"
+    },
+    "fullDescription": {
+      "type": "string"
+    },
+    "isActive": {
+      "default": true,
+      "type": "boolean"
+    },
+    "sortOrder": {
+      "default": 0,
+      "type": "number"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "shortDescription",
+    "fullDescription"
+  ]
+}

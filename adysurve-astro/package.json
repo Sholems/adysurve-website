@@ -1,0 +1,31 @@
+{
+  "name": "adysurve-astro",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "ADYSURVE LTD website rebuild in Astro — migrated from Laravel",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [
+    "adysurve",
+    "astro",
+    "website"
+  ],
+  "author": "Bold Ideas",
+  "license": "MIT",
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.6.0",
+    "@astrojs/mdx": "^6.0.1",
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.19",
+    "alpinejs": "^3.15.12",
+    "astro": "^6.4.2",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.19"
+  }
+}

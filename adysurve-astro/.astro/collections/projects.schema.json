@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "serviceSlug": {
+      "type": "string"
+    },
+    "clientName": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "featuredImage": {
+      "type": "string"
+    },
+    "galleryImages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string"
+    },
+    "isFeatured": {
+      "default": false,
+      "type": "boolean"
+    },
+    "isActive": {
+      "default": true,
+      "type": "boolean"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "serviceSlug",
+    "description"
+  ]
+}

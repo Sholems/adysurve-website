@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const programs = await getCollection('academy');
+const sorted = programs.sort((a, b) => (a.data.duration === '1 Month' ? -1 : 1));
+
+const DURATION_COLORS = {
+  '1 Month': 'bg-amber-100 text-amber-800',
+  '3 Months': 'bg-blue-100 text-blue-800',
+  '6 Months': 'bg-purple-100 text-purple-800',
+};
+
+const PROGRAM_ICONS = {
+  'cctv-security':
+    'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  'network-security':
+    'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+  'solar-renewable-energy':
+    'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z',
+  'it-essentials':
+    'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  'graphic-design-media':
+    'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
+};
+---
+
+<Layout
+  title="Academy | ADYSURVE LTD — Megabyte Academy Training Programs"
+  description="Explore Megabyte Academy's practical training programs: CCTV installation, network security, solar renewable energy, IT essentials, and graphic design. Enroll today."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-dark-deeper py-16 text-white md:py-32">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(201,151,43,0.22),transparent_32%),radial-gradient(circle_at_82%_72%,rgba(255,255,255,0.08),transparent_30%)]"></div>
+    <div class="container-page relative">
+      <p class="inline-flex max-w-full items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-2 text-[10px] font-extrabold uppercase tracking-[0.12em] text-primary-light sm:px-4 sm:text-xs sm:tracking-widest">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+        <span class="truncate">Megabyte Academy — A Training Arm of ADYSURVE LTD</span>
+      </p>
+      <h1 class="mt-6 max-w-4xl font-display text-3xl font-extrabold leading-tight md:text-6xl">Megabyte Academy</h1>
+      <p class="mt-5 max-w-3xl text-base leading-8 text-white/75 sm:text-lg">Practical, industry-focused training programs designed to equip individuals and organizations with real-world technology skills. From CCTV installation and network security to solar energy, IT essentials, and graphic design — each program combines hands-on experience with career-ready knowledge.</p>
+    </div>
+  </section>
+
+  <!-- Program Grid -->
+  <section class="py-16 md:py-28">
+    <div class="container-page">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-extrabold uppercase tracking-widest text-primary">Training Programs</p>
+        <h2 class="mt-3 font-display text-3xl font-extrabold leading-tight text-dark-deeper md:text-5xl">Choose your path</h2>
+        <p class="mt-5 text-lg leading-8 text-dark/65">Each program is built around practical skills, real equipment, and industry standards. No prior experience required — just a willingness to learn.</p>
+      </div>
+
+      <div class="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {sorted.map((program) => {
+          const { data } = program;
+          const firstFactValue = data.facts?.[0]?.value || '';
+          const durationClass = DURATION_COLORS[data.duration] || 'bg-gray-100 text-gray-800';
+          const iconPath = PROGRAM_ICONS[program.id] || PROGRAM_ICONS['network-security'];
+
+          return (
+            <a
+              href={`/academy/${program.id}`}
+              class="group relative flex flex-col overflow-hidden rounded-2xl border border-black/8 bg-white shadow-lg shadow-black/5 transition hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl"
+            >
+              <!-- Top accent bar -->
+              <div class="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-primary to-primary-light"></div>
+
+              <div class="flex flex-1 flex-col p-6 sm:p-8">
+                <!-- Header row: icon + badges -->
+                <div class="flex items-start justify-between gap-4">
+                  <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary-dark transition group-hover:bg-primary group-hover:text-dark-deeper">
+                    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d={iconPath} />
+                    </svg>
+                  </span>
+                  <div class="flex shrink-0 flex-wrap gap-2">
+                    <span class={`rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider ${durationClass}`}>{data.duration}</span>
+                    {firstFactValue && (
+                      <span class="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-primary-dark">{firstFactValue}</span>
+                    )}
+                  </div>
+                </div>
+
+                <!-- Title & Subtitle -->
+                <h2 class="mt-5 font-display text-xl font-extrabold leading-snug text-dark-deeper group-hover:text-primary-dark">{data.title}</h2>
+                <p class="mt-2 text-sm font-bold text-dark/50">{data.kicker}</p>
+                <p class="mt-3 flex-1 text-sm leading-7 text-dark/65 line-clamp-3">{data.subtitle}</p>
+
+                <!-- Key highlights -->
+                <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold uppercase tracking-wider text-dark/50">
+                  {data.why?.items?.slice(0, 3).map((item) => (
+                    <span class="flex items-center gap-1.5">
+                      <svg class="h-3.5 w-3.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- CTA -->
+                <span class="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-primary group-hover:text-primary-dark">
+                  View Program Details
+                  <svg class="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                </span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-primary py-16 text-dark-deeper">
+    <div class="container-page flex flex-col items-stretch justify-between gap-6 md:flex-row md:items-center">
+      <div>
+        <h2 class="font-display text-3xl font-extrabold leading-tight md:text-4xl">Not sure which program fits best?</h2>
+        <p class="mt-3 max-w-2xl text-lg font-medium">Contact ADYSURVE LTD for guidance — we'll help you choose the right training path for your goals.</p>
+      </div>
+      <a href="/contact" class="inline-flex items-center gap-2 rounded-full bg-dark-deeper px-8 py-4 text-center text-sm font-extrabold text-white shadow-xl transition hover:bg-black">
+        Get Advice
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+      </a>
+    </div>
+  </section>
+</Layout>

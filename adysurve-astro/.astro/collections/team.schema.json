@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "socialLinks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "platform",
+          "url"
+        ]
+      }
+    },
+    "isActive": {
+      "default": true,
+      "type": "boolean"
+    },
+    "sortOrder": {
+      "default": 0,
+      "type": "number"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "role"
+  ]
+}

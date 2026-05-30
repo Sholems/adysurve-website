@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const services = await getCollection('services');
+
+const serviceMap = new Map(services.map((s) => [s.id, s.data.title]));
+
+const activeProjects = projects
+  .filter((p) => p.data.isActive)
+  .sort((a, b) => (b.data.isFeatured ? 1 : 0) - (a.data.isFeatured ? 1 : 0));
+---
+
+<Layout
+  title="Projects | ADYSURVE LTD"
+  description="View ADYSURVE projects across IT infrastructure, CCTV surveillance, solar energy, training, and graphic design in Nigeria."
+>
+  <section class="bg-dark-deeper py-14 text-white sm:py-20">
+    <div class="container-page">
+      <p class="text-sm font-bold uppercase tracking-widest text-primary">ADYSURVE LTD</p>
+      <h1 class="mt-4 max-w-4xl font-display text-3xl font-extrabold leading-tight md:text-6xl">Projects</h1>
+      <p class="mt-5 max-w-3xl text-base leading-8 text-white/75 sm:text-lg">A growing portfolio of practical implementations across ADYSURVE service areas.</p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-28">
+    <div class="container-page">
+      {activeProjects.length > 0 ? (
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {activeProjects.map((project) => (
+            <a
+              href={`/projects/${project.id}`}
+              class="group flex flex-col overflow-hidden rounded-2xl border border-black/8 bg-white shadow-lg shadow-black/5 transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              {project.data.featuredImage && (
+                <div class="aspect-[16/10] overflow-hidden">
+                  <img src={project.data.featuredImage} alt="" width="600" height="375" loading="lazy" class="h-full w-full object-cover transition group-hover:scale-105" />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-5 sm:p-6">
+                {project.data.isFeatured && (
+                  <span class="mb-3 inline-block self-start rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-dark">Featured</span>
+                )}
+                <h2 class="font-display text-lg font-extrabold leading-snug text-dark-deeper group-hover:text-primary-dark">{project.data.title}</h2>
+                <div class="mt-2 flex flex-wrap gap-2 text-xs text-dark/60">
+                  {project.data.serviceSlug && serviceMap.has(project.data.serviceSlug) && (
+                    <span class="rounded-md bg-light px-2 py-1 font-medium">{serviceMap.get(project.data.serviceSlug)}</span>
+                  )}
+                  {project.data.location && (
+                    <span class="flex items-center gap-1">
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      {project.data.location}
+                    </span>
+                  )}
+                </div>
+                <p class="mt-3 flex-1 text-sm leading-7 text-dark/65">{project.data.description}</p>
+                <span class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:text-primary-dark">
+                  View Project
+                  <svg class="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center text-dark/65">
+          <p>No projects available yet. Check back soon.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

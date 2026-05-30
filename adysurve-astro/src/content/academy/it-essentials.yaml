@@ -1,0 +1,112 @@
+title: "IT Essentials for Beginners Training Program"
+subtitle: "Start Your Journey into the World of Information Technology"
+kicker: "Gain Practical Digital Skills with ADYSURVE LTD"
+service: "IT Essentials for Beginners Training Program"
+duration: "3 Months"
+metaTitle: "IT Essentials for Beginners Training Program | Megabyte Academy"
+metaDescription: "Join Megabyte Academy, a training arm of ADYSURVE LTD, for a practical 3-month IT Essentials for Beginners Training Program."
+facts:
+  - icon: "heroicon-o-computer-desktop"
+    label: "Training Style"
+    value: "Practical & Hands-on"
+  - icon: "heroicon-o-wifi"
+    label: "Mode"
+    value: "Physical / Hybrid / Corporate Sessions"
+  - icon: "heroicon-o-document-check"
+    label: "Certification"
+    value: "Certificate of Completion Included"
+intro:
+  - "Technology has become an essential part of everyday life and modern business operations. From communication and education to business management and digital services, computer knowledge and IT skills are now among the most valuable skills in today&rsquo;s world."
+  - "At ADYSURVE LTD, we offer a comprehensive <strong class=\"text-white\">3-Month IT Essentials for Beginners Training Program</strong> designed to help students, job seekers, entrepreneurs, office workers, and beginners build a strong foundation in Information Technology."
+  - "This training program is beginner-friendly and focuses on practical learning, helping participants develop the confidence and technical skills needed to use computers effectively, understand digital systems, and prepare for advanced technology careers."
+  - "Whether you are completely new to computers or looking to improve your digital knowledge, our IT Essentials program provides the right starting point for success in today&rsquo;s digital economy."
+why:
+  label: "Why Choose ADYSURVE LTD IT Training?"
+  heading: "Simple, practical, and accessible technology education."
+  text: "At ADYSURVE LTD, we believe technology education should be simple, practical, and accessible to everyone. Our training is structured to make learning easy while providing hands-on experience with real computer systems and modern digital tools."
+  items:
+    - "Beginner-friendly learning environment"
+    - "Hands-on practical computer sessions"
+    - "Step-by-step teaching approach"
+    - "Experienced IT instructors"
+    - "Small class sizes for personalized attention"
+    - "Real-world digital skills training"
+    - "Practical assignments and projects"
+    - "Career-focused learning structure"
+    - "Certificate of completion awarded after training"
+curriculum:
+  heading: "Core digital and computer skills every beginner should know."
+  text: "Our 3-month IT Essentials training covers the core digital and computer skills every beginner should know."
+  modules:
+    - - "Module 1: Introduction to Computers"
+      - ["Understanding computer systems", "Types of computers and devices", "Computer hardware and software basics", "Input and output devices", "Computer operating systems"]
+    - - "Module 2: Basic Computer Operations"
+      - ["Using Windows operating system", "File and folder management", "Installing and uninstalling software", "Keyboard shortcuts and productivity tips", "Computer maintenance basics"]
+    - - "Module 3: Internet & Digital Literacy"
+      - ["Understanding the internet", "Web browsing and online research", "Email creation and management", "Online safety and cybersecurity awareness", "Digital communication tools"]
+    - - "Module 4: Microsoft Office & Productivity Tools"
+      - ["Microsoft Word for document creation", "Microsoft Excel basics", "Microsoft PowerPoint presentations", "Formatting and professional documentation", "Office productivity techniques"]
+    - - "Module 5: Introduction to Networking & IT Support"
+      - ["Basic networking concepts", "Understanding internet connectivity", "Troubleshooting common computer problems", "Basic IT support skills", "Introduction to computer security"]
+    - - "Module 6: Digital Skills for Career & Business"
+      - ["Online collaboration tools", "Digital workplace skills", "CV and professional document preparation", "Freelancing and online opportunities", "Career guidance in Information Technology"]
+corporate:
+  label: "Corporate Digital Skills Training"
+  heading: "Customized IT Essentials training for teams."
+  paragraphs:
+    - "ADYSURVE LTD also offers customized IT Essentials training for businesses and corporate organizations, schools and educational institutions, government agencies, churches and NGOs, and staff and administrative teams."
+    - "Our corporate IT training helps organizations improve digital literacy, workplace productivity, and technology adoption among staff members."
+  methods:
+    - "At your organization"
+    - "At our training center"
+    - "Through customized group sessions"
+  panelHeading: "Corporate training is ideal for:"
+  items:
+    - "Businesses and corporate organizations"
+    - "Schools and educational institutions"
+    - "Government agencies"
+    - "Churches and NGOs"
+    - "Staff and administrative teams"
+cards:
+  apply:
+    heading: "Who Can Apply?"
+    intro: "This program is suitable for:"
+    items:
+      - "Absolute beginners"
+      - "Students and graduates"
+      - "Job seekers"
+      - "Business owners and entrepreneurs"
+      - "Office workers"
+      - "Teachers and administrators"
+      - "Senior citizens interested in digital literacy"
+      - "Anyone looking to improve computer knowledge"
+    note: "No previous computer experience is required."
+  benefits:
+    heading: "Benefits of the Training"
+    intro: "After completing the program, participants will:"
+    items:
+      - "Understand how computers and digital systems work"
+      - "Use Microsoft Office tools effectively"
+      - "Browse the internet safely and confidently"
+      - "Handle basic computer troubleshooting"
+      - "Improve productivity and workplace skills"
+      - "Build confidence in using technology"
+      - "Prepare for advanced IT training opportunities"
+      - "Receive a professional certificate of completion"
+  careers:
+    heading: "Career & Learning Opportunities After Training"
+    intro: "Graduates can progress into:"
+    items:
+      - "IT Support roles"
+      - "Administrative and office positions"
+      - "Data entry and digital operations"
+      - "Customer support services"
+      - "Advanced networking and cybersecurity training"
+      - "Graphic design and digital marketing"
+      - "Freelancing and online work opportunities"
+    note: "This training also serves as a foundation for more advanced IT and technology programs."
+cta:
+  heading: "Begin your journey into Information Technology."
+  paragraphs:
+    - "Digital skills are no longer optional in today&rsquo;s world. This is your opportunity to gain practical computer knowledge and build confidence in using modern technology for work, business, education, and everyday life."
+    - "Join ADYSURVE LTD today and begin your journey into Information Technology with our IT Essentials for Beginners Training Program."

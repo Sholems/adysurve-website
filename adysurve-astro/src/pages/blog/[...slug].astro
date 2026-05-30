@@ -1,0 +1,110 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog');
+  return blogPosts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { data } = post;
+
+// Get related posts (same category, excluding current)
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter((p) => p.id !== post.id && p.data.isPublished)
+  .filter((p) => !data.category || p.data.category === data.category)
+  .sort((a, b) => {
+    const aDate = a.data.publishedAt ?? new Date(0);
+    const bDate = b.data.publishedAt ?? new Date(0);
+    return bDate.getTime() - aDate.getTime();
+  })
+  .slice(0, 3);
+---
+
+<Layout
+  title={`${data.metaTitle || data.title} | ADYSURVE LTD`}
+  description={data.metaDescription || data.excerpt}
+  image={data.featuredImage}
+>
+  <article>
+    <!-- Hero -->
+    <section class="bg-dark-deeper py-14 text-white sm:py-20">
+      <div class="container-page">
+        <a href="/blog" class="mb-6 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-light">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+          Back to Blog
+        </a>
+        <div class="flex flex-wrap items-center gap-3">
+          {data.category && (
+            <span class="rounded-full bg-primary/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary-light">{data.category}</span>
+          )}
+          {data.publishedAt && (
+            <span class="text-sm text-white/60">{new Date(data.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+          )}
+        </div>
+        <h1 class="mt-4 max-w-4xl font-display text-3xl font-extrabold leading-tight md:text-5xl">{data.title}</h1>
+        <p class="mt-4 max-w-3xl text-lg leading-8 text-white/70">{data.excerpt}</p>
+      </div>
+    </section>
+
+    <!-- Featured Image -->
+    {data.featuredImage && (
+      <div class="bg-white pb-8 pt-0 md:pb-12">
+        <div class="container-page">
+          <div class="-mt-10 overflow-hidden rounded-2xl shadow-2xl md:-mt-16">
+            <img src={data.featuredImage} alt={data.title} width="1200" height="675" loading="eager" class="w-full object-cover" />
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- Content -->
+    <section class="pb-16 md:pb-28">
+      <div class="container-page max-w-4xl">
+        <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:font-extrabold prose-headings:text-dark-deeper prose-p:text-[var(--color-text-muted)] prose-p:leading-8 prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary-dark prose-strong:text-dark-deeper prose-img:rounded-xl">
+          <slot />
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <!-- Related Posts -->
+  {relatedPosts.length > 0 && (
+    <section class="bg-light py-16 md:py-24">
+      <div class="container-page">
+        <h2 class="font-display text-3xl font-extrabold text-dark-deeper md:text-4xl">Related Articles</h2>
+        <div class="mt-8 grid gap-6 md:grid-cols-3">
+          {relatedPosts.map((rp) => (
+            <a href={`/blog/${rp.id}`} class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+              {rp.data.featuredImage && (
+                <div class="aspect-[16/9] overflow-hidden">
+                  <img src={rp.data.featuredImage} alt="" width="400" height="225" loading="lazy" class="h-full w-full object-cover transition group-hover:scale-105" />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-5">
+                {rp.data.category && (
+                  <span class="mb-2 inline-block self-start rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-dark">{rp.data.category}</span>
+                )}
+                <h3 class="font-display text-base font-extrabold leading-snug text-dark-deeper group-hover:text-primary-dark">{rp.data.title}</h3>
+                <p class="mt-2 flex-1 text-sm leading-7 text-dark/65 line-clamp-2">{rp.data.excerpt}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="bg-primary py-16 text-dark-deeper">
+    <div class="container-page flex flex-col items-stretch justify-between gap-6 md:flex-row md:items-center">
+      <h2 class="font-display text-3xl font-extrabold md:text-4xl">Ready to discuss your next project?</h2>
+      <a href="/contact" class="rounded-full bg-dark-deeper px-7 py-4 text-center font-bold text-white">Contact Us</a>
+    </div>
+  </section>
+</Layout>

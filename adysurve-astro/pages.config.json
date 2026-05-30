@@ -1,0 +1,119 @@
+{
+  "editor": "visual",
+  "repo": "",
+  "base": "adysurve-astro",
+  "collections": [
+    {
+      "name": "settings",
+      "label": "Site Settings",
+      "description": "Global site configuration (logo, contact info, social links, hero text)",
+      "path": "src/content/settings",
+      "format": "yaml",
+      "singular": true,
+      "schema": [
+        { "name": "siteName", "type": "string", "label": "Site Name" },
+        { "name": "siteTagline", "type": "string", "label": "Tagline" },
+        { "name": "siteEmail", "type": "string", "label": "Email", "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$" },
+        { "name": "sitePhone", "type": "string", "label": "Phone" },
+        { "name": "siteAddress", "type": "text", "label": "Address" },
+        { "name": "siteWhatsapp", "type": "string", "label": "WhatsApp Number" },
+        { "name": "businessHours", "type": "string", "label": "Business Hours" },
+        { "name": "heroHeadline", "type": "string", "label": "Hero Headline" },
+        { "name": "heroSubheadline", "type": "string", "label": "Hero Subheadline" },
+        { "name": "aboutSummary", "type": "text", "label": "About Summary" },
+        { "name": "facebookUrl", "type": "string", "label": "Facebook URL" },
+        { "name": "linkedinUrl", "type": "string", "label": "LinkedIn URL" },
+        { "name": "instagramUrl", "type": "string", "label": "Instagram URL" },
+        { "name": "youtubeUrl", "type": "string", "label": "YouTube URL" },
+        { "name": "tiktokUrl", "type": "string", "label": "TikTok URL" },
+        { "name": "googleAnalyticsId", "type": "string", "label": "Google Analytics ID" }
+      ]
+    },
+    {
+      "name": "services",
+      "label": "Services",
+      "description": "Core service offerings",
+      "path": "src/content/services",
+      "format": "yaml",
+      "identifier": "title",
+      "schema": [
+        { "name": "title", "type": "string", "label": "Title", "required": true },
+        { "name": "shortDescription", "type": "text", "label": "Short Description", "required": true },
+        { "name": "fullDescription", "type": "rich-text", "label": "Full Description", "required": true },
+        { "name": "featuredImage", "type": "image", "label": "Featured Image" },
+        { "name": "metaTitle", "type": "string", "label": "SEO Title" },
+        { "name": "metaDescription", "type": "text", "label": "SEO Description" },
+        { "name": "isActive", "type": "boolean", "label": "Active", "default": true },
+        { "name": "sortOrder", "type": "number", "label": "Sort Order", "default": 0 }
+      ]
+    },
+    {
+      "name": "projects",
+      "label": "Projects",
+      "description": "Project portfolio entries",
+      "path": "src/content/projects",
+      "format": "yaml",
+      "identifier": "title",
+      "schema": [
+        { "name": "title", "type": "string", "label": "Title", "required": true },
+        { "name": "serviceSlug", "type": "string", "label": "Service Slug", "required": true },
+        { "name": "clientName", "type": "string", "label": "Client Name" },
+        { "name": "location", "type": "string", "label": "Location" },
+        { "name": "featuredImage", "type": "image", "label": "Featured Image" },
+        { "name": "galleryImages", "type": "list", "label": "Gallery Images", "items": { "type": "image" } },
+        { "name": "description", "type": "text", "label": "Description", "required": true },
+        { "name": "isFeatured", "type": "boolean", "label": "Featured", "default": false },
+        { "name": "isActive", "type": "boolean", "label": "Active", "default": true }
+      ]
+    },
+    {
+      "name": "testimonials",
+      "label": "Testimonials",
+      "description": "Client testimonials and reviews",
+      "path": "src/content/testimonials",
+      "format": "yaml",
+      "identifier": "clientName",
+      "schema": [
+        { "name": "clientName", "type": "string", "label": "Client Name", "required": true },
+        { "name": "clientTitle", "type": "string", "label": "Client Title" },
+        { "name": "clientCompany", "type": "string", "label": "Company" },
+        { "name": "content", "type": "text", "label": "Testimonial Content", "required": true },
+        { "name": "rating", "type": "number", "label": "Rating (1-5)", "default": 5 },
+        { "name": "isActive", "type": "boolean", "label": "Active", "default": true }
+      ]
+    },
+    {
+      "name": "team",
+      "label": "Team Members",
+      "description": "Staff and team member profiles",
+      "path": "src/content/team",
+      "format": "yaml",
+      "identifier": "name",
+      "schema": [
+        { "name": "name", "type": "string", "label": "Name", "required": true },
+        { "name": "role", "type": "string", "label": "Role", "required": true },
+        { "name": "photo", "type": "image", "label": "Photo" },
+        { "name": "bio", "type": "text", "label": "Bio" },
+        { "name": "isActive", "type": "boolean", "label": "Active", "default": true },
+        { "name": "sortOrder", "type": "number", "label": "Sort Order", "default": 0 }
+      ]
+    },
+    {
+      "name": "blog",
+      "label": "Blog Posts",
+      "description": "Blog articles and insights",
+      "path": "src/content/blog",
+      "format": "mdx",
+      "identifier": "title",
+      "schema": [
+        { "name": "title", "type": "string", "label": "Title", "required": true },
+        { "name": "category", "type": "string", "label": "Category" },
+        { "name": "featuredImage", "type": "image", "label": "Featured Image" },
+        { "name": "excerpt", "type": "text", "label": "Excerpt", "required": true },
+        { "name": "isFeatured", "type": "boolean", "label": "Featured", "default": false },
+        { "name": "isPublished", "type": "boolean", "label": "Published", "default": true },
+        { "name": "publishedAt", "type": "datetime", "label": "Publish Date" }
+      ]
+    }
+  ]
+}

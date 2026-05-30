@@ -1,0 +1,111 @@
+title: "Professional Network & Security Training Program"
+subtitle: "Build a Career in IT Infrastructure, Networking & Cybersecurity"
+kicker: "Become Industry-Ready with ADYSURVE LTD"
+service: "Professional Network & Security Training Program"
+duration: "6 Months"
+metaTitle: "Professional Network & Security Training Program | Megabyte Academy"
+metaDescription: "Join Megabyte Academy, a training arm of ADYSURVE LTD, for a practical 6-month Network & Security Training Program covering IT infrastructure, networking, cybersecurity, and career readiness."
+facts:
+  - icon: "heroicon-o-wrench-screwdriver"
+    label: "Training Format"
+    value: "Practical & Hands-on"
+  - icon: "heroicon-o-computer-desktop"
+    label: "Mode"
+    value: "Physical / Hybrid / Corporate Sessions"
+  - icon: "heroicon-o-document-check"
+    label: "Certification"
+    value: "Certificate of Completion Provided"
+intro:
+  - "Technology powers today&rsquo;s world, and organizations everywhere depend on secure and reliable IT systems to operate efficiently. At ADYSURVE LTD, we are committed to raising the next generation of skilled IT professionals through our comprehensive <strong class=\"text-white\">6-Month Network & Security Training Program</strong> designed for individuals, students, entrepreneurs, IT enthusiasts, and corporate organizations."
+  - "Our training combines practical experience, modern industry standards, and real-world IT infrastructure knowledge to equip participants with valuable technical skills that are highly demanded in today&rsquo;s digital economy."
+  - "Whether you are starting a career in Information Technology, seeking professional development, or upgrading your organization&rsquo;s workforce, our training program provides the knowledge and hands-on experience needed to succeed in the fast-growing technology industry."
+why:
+  label: "Why Choose ADYSURVE LTD Training?"
+  heading: "Learning that goes beyond theory."
+  text: "At ADYSURVE LTD, we believe learning should go beyond theory. Our training approach focuses on practical implementation, hands-on labs, and real-world scenarios that prepare students for actual IT environments."
+  items:
+    - "Hands-on practical sessions"
+    - "Industry-standard training approach"
+    - "Real-world networking scenarios"
+    - "Beginner-friendly learning structure"
+    - "Corporate and individual training options"
+    - "Experienced instructors and IT professionals"
+    - "Career-focused curriculum"
+    - "Continuous mentorship and support"
+    - "Small class sizes for better learning"
+    - "Certificate of completion after training"
+curriculum:
+  heading: "A 6-month curriculum for networking, IT infrastructure, and cybersecurity."
+  text: "Our 6-month program covers essential and advanced concepts in networking, IT infrastructure, and cybersecurity."
+  modules:
+    - - "Module 1: Computer & IT Fundamentals"
+      - ["Introduction to Information Technology", "Computer hardware and software basics", "Operating systems fundamentals", "Internet and networking basics", "Troubleshooting computer systems"]
+    - - "Module 2: Networking Fundamentals"
+      - ["Network types and topologies", "IP addressing and subnetting", "Routers and switches configuration", "LAN and WAN setup", "Wireless networking", "Structured cabling systems"]
+    - - "Module 3: IT Infrastructure & Support"
+      - ["Server setup and administration", "System maintenance and upgrades", "IT support operations", "Backup and recovery systems", "Cloud and remote access basics"]
+    - - "Module 4: Network Security & Cybersecurity"
+      - ["Introduction to cybersecurity", "Firewall configuration", "Network protection techniques", "Threat detection and prevention", "Data security best practices", "Password and access management", "Security monitoring fundamentals"]
+    - - "Module 5: Practical Installation & Configuration"
+      - ["Network device installation", "CCTV and surveillance integration basics", "Real-world networking projects", "Office and enterprise network setup", "Troubleshooting live network issues"]
+    - - "Module 6: Professional Development & Career Readiness"
+      - ["IT career guidance", "CV and portfolio development", "Professional communication skills", "Freelancing and business opportunities in IT", "Interview preparation and workplace ethics"]
+corporate:
+  label: "Corporate Training Solutions"
+  heading: "Custom IT and cybersecurity training for organizations."
+  paragraphs:
+    - "ADYSURVE LTD also provides customized corporate IT and cybersecurity training for businesses, schools, organizations, and institutions. Our corporate training programs are designed to improve staff productivity, strengthen cybersecurity awareness, and enhance IT operational efficiency."
+    - "We can conduct training:"
+  methods:
+    - "On-site at your organization"
+    - "At our training center"
+    - "Hybrid or online sessions"
+  panelHeading: "Corporate Training Areas Include:"
+  items:
+    - "IT support training"
+    - "Cybersecurity awareness"
+    - "Network management"
+    - "Office IT infrastructure"
+    - "Staff digital skills development"
+    - "Organizational technology support"
+cards:
+  apply:
+    heading: "Who Can Apply?"
+    intro: "This training program is suitable for:"
+    items:
+      - "Beginners with no IT background"
+      - "Students and graduates"
+      - "Entrepreneurs and business owners"
+      - "Corporate staff and organizations"
+      - "IT support personnel"
+      - "Professionals seeking career transition"
+      - "Anyone interested in networking and cybersecurity"
+    note: "No advanced technical experience is required to get started."
+  benefits:
+    heading: "Benefits of the Training"
+    intro: "By the end of the program, participants will:"
+    items:
+      - "Understand modern networking systems"
+      - "Gain practical cybersecurity knowledge"
+      - "Configure and troubleshoot networks"
+      - "Handle basic IT infrastructure support"
+      - "Improve employability and career opportunities"
+      - "Build confidence in handling real IT environments"
+      - "Receive professional training certification"
+  careers:
+    heading: "Career Opportunities After Training"
+    intro: "Graduates of the program can work as:"
+    items:
+      - "IT Support Technician"
+      - "Network Support Officer"
+      - "System Administrator Assistant"
+      - "Help Desk Personnel"
+      - "CCTV & Security System Technician"
+      - "Junior Network Engineer"
+      - "Technical Support Specialist"
+      - "Freelance IT Consultant"
+cta:
+  heading: "Join ADYSURVE LTD today."
+  paragraphs:
+    - "The demand for skilled IT and cybersecurity professionals continues to grow globally. This is the perfect opportunity to gain practical digital skills that can open doors to employment, entrepreneurship, and career advancement."
+    - "Join ADYSURVE LTD today and take the first step toward building a successful future in Information Technology, Networking, and Cybersecurity."

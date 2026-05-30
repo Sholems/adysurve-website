@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --color-primary: #C9972B;
+    --color-primary-dark: #A67C1F;
+    --color-primary-light: #E8B84B;
+    --color-dark: #3A3A3A;
+    --color-darker: #1A1A1A;
+    --color-light: #F5F5F5;
+    --color-white: #FFFFFF;
+    --color-text: #2D2D2D;
+    --color-text-muted: #6B6B6B;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-text);
+    background: var(--color-white);
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 700ms ease,
+        transform 700ms ease;
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.reveal-ready [data-reveal="fade-left"] {
+    transform: translateX(-28px);
+}
+
+.reveal-ready [data-reveal="fade-right"] {
+    transform: translateX(28px);
+}
+
+.reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal-ready [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
