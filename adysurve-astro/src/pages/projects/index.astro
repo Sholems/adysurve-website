@@ -7,9 +7,17 @@ const services = await getCollection('services');
 
 const serviceMap = new Map(services.map((s) => [s.id, s.data.title]));
 
+const activeServices = services
+  .filter((s) => s.data.isActive)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
 const activeProjects = projects
   .filter((p) => p.data.isActive)
   .sort((a, b) => (b.data.isFeatured ? 1 : 0) - (a.data.isFeatured ? 1 : 0));
+
+// Collect unique service slugs used across active projects
+const usedServiceSlugs = [...new Set(activeProjects.map((p) => p.data.serviceSlug).filter(Boolean))];
+const filterServices = activeServices.filter((s) => usedServiceSlugs.includes(s.id));
 ---
 
 <Layout
@@ -24,45 +32,77 @@ const activeProjects = projects
     </div>
   </section>
 
-  <section class="py-16 md:py-28">
+  <section
+    x-data="{ filter: 'all' }"
+    class="py-16 md:py-28"
+  >
     <div class="container-page">
       {activeProjects.length > 0 ? (
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {activeProjects.map((project) => (
-            <a
-              href={`/projects/${project.id}`}
-              class="group flex flex-col overflow-hidden rounded-2xl border border-black/8 bg-white shadow-lg shadow-black/5 transition hover:-translate-y-1 hover:shadow-xl"
+        <>
+          {/* Filter Buttons */}
+          <div class="mb-10 flex flex-wrap gap-3">
+            <button
+              @click="filter = 'all'"
+              class="rounded-full border px-5 py-2 text-sm font-bold transition"
+              :class="filter === 'all' ? 'border-primary bg-primary text-dark-deeper' : 'border-black/15 text-dark-deeper hover:border-primary/40 hover:text-primary'"
             >
-              {project.data.featuredImage && (
-                <div class="aspect-[16/10] overflow-hidden">
-                  <img src={project.data.featuredImage} alt="" width="600" height="375" loading="lazy" class="h-full w-full object-cover transition group-hover:scale-105" />
-                </div>
-              )}
-              <div class="flex flex-1 flex-col p-5 sm:p-6">
-                {project.data.isFeatured && (
-                  <span class="mb-3 inline-block self-start rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-dark">Featured</span>
-                )}
-                <h2 class="font-display text-lg font-extrabold leading-snug text-dark-deeper group-hover:text-primary-dark">{project.data.title}</h2>
-                <div class="mt-2 flex flex-wrap gap-2 text-xs text-dark/60">
-                  {project.data.serviceSlug && serviceMap.has(project.data.serviceSlug) && (
-                    <span class="rounded-md bg-light px-2 py-1 font-medium">{serviceMap.get(project.data.serviceSlug)}</span>
+              All Projects
+            </button>
+            {filterServices.map((svc) => (
+              <button
+                @click="filter = '{svc.id}'"
+                class="rounded-full border px-5 py-2 text-sm font-bold transition"
+                :class="filter === '{svc.id}' ? 'border-primary bg-primary text-dark-deeper' : 'border-black/15 text-dark-deeper hover:border-primary/40 hover:text-primary'"
+              >
+                {svc.data.title}
+              </button>
+            ))}
+          </div>
+
+          {/* Project Grid */}
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {activeProjects.map((project) => (
+              <div
+                x-show="filter === 'all' || filter === '{project.data.serviceSlug}'"
+                x-transition:enter.duration.300ms
+                x-transition:leave.duration.200ms
+              >
+                <a
+                  href={`/projects/${project.id}`}
+                  class="group flex flex-col overflow-hidden rounded-2xl border border-black/8 bg-white shadow-lg shadow-black/5 transition hover:-translate-y-1 hover:shadow-xl"
+                >
+                  {project.data.featuredImage && (
+                    <div class="aspect-[16/10] overflow-hidden">
+                      <img src={project.data.featuredImage} alt="" width="600" height="375" loading="lazy" class="h-full w-full object-cover transition group-hover:scale-105" />
+                    </div>
                   )}
-                  {project.data.location && (
-                    <span class="flex items-center gap-1">
-                      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                      {project.data.location}
+                  <div class="flex flex-1 flex-col p-5 sm:p-6">
+                    {project.data.isFeatured && (
+                      <span class="mb-3 inline-block self-start rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-dark">Featured</span>
+                    )}
+                    <h2 class="font-display text-lg font-extrabold leading-snug text-dark-deeper group-hover:text-primary-dark">{project.data.title}</h2>
+                    <div class="mt-2 flex flex-wrap gap-2 text-xs text-dark/60">
+                      {project.data.serviceSlug && serviceMap.has(project.data.serviceSlug) && (
+                        <span class="rounded-md bg-light px-2 py-1 font-medium">{serviceMap.get(project.data.serviceSlug)}</span>
+                      )}
+                      {project.data.location && (
+                        <span class="flex items-center gap-1">
+                          <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                          {project.data.location}
+                        </span>
+                      )}
+                    </div>
+                    <p class="mt-3 flex-1 text-sm leading-7 text-dark/65">{project.data.description}</p>
+                    <span class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:text-primary-dark">
+                      View Project
+                      <svg class="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                     </span>
-                  )}
-                </div>
-                <p class="mt-3 flex-1 text-sm leading-7 text-dark/65">{project.data.description}</p>
-                <span class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:text-primary-dark">
-                  View Project
-                  <svg class="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                </span>
+                  </div>
+                </a>
               </div>
-            </a>
-          ))}
-        </div>
+            ))}
+          </div>
+        </>
       ) : (
         <div class="text-center text-dark/65">
           <p>No projects available yet. Check back soon.</p>

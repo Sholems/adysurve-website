@@ -1,58 +1,103 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="https://adysurve.com" target="_blank">
+    <img src="https://adysurve.com/images/ady-logo.png" width="120" alt="ADYSURVE LTD Logo">
+  </a>
 </p>
 
-## About Laravel
+<h1 align="center">ADYSURVE LTD Website</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <strong>Smart Solutions for a Secure Future.</strong><br>
+  Built with Astro &middot; Deployed on Cloudflare Pages
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tech Stack
 
-## Learning Laravel
+| Layer | Technology |
+|---|---|
+| Framework | [Astro](https://astro.build) v6 |
+| Styling | [Tailwind CSS](https://tailwindcss.com) v3 |
+| Interactivity | [Alpine.js](https://alpinejs.dev) v3 |
+| Content | Astro Content Collections (YAML / MDX) |
+| Hosting | [Cloudflare Pages](https://pages.cloudflare.com) |
+| Adapter | `@astrojs/cloudflare` |
+| CMS | Cloudflare Pages CMS (via `pages.config.json`) |
+| Functions | Cloudflare Pages Functions (contact & consultation APIs) |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Project Structure
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```
+adysurve-astro/
+├── src/
+│   ├── components/          # Reusable Astro components (Header, Footer, SEOHead)
+│   ├── content/             # Content collections (services, projects, blog, etc.)
+│   ├── layouts/             # Page layout (Layout.astro)
+│   ├── pages/               # Route pages (index, about, contact, blog, etc.)
+│   │   ├── academy/         # Megabyte Academy pages
+│   │   ├── blog/            # Blog listing + dynamic posts
+│   │   ├── projects/        # Project portfolio + dynamic projects
+│   │   └── services/        # Services listing + dynamic services
+│   ├── scripts/             # Client-side scripts (Alpine.js, scroll reveal)
+│   └── styles/              # Global CSS (Tailwind + custom vars)
+├── functions/api/           # Cloudflare Pages Functions
+├── public/                  # Static assets (images, robots.txt, admin/)
+├── astro.config.mjs         # Astro configuration
+├── pages.config.json        # Cloudflare Pages CMS config
+└── tailwind.config.mjs      # Tailwind configuration
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Getting Started
 
-## Contributing
+```bash
+# Install dependencies
+cd adysurve-astro
+npm install
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Start dev server
+npm run dev
 
-## Code of Conduct
+# Build for production
+npm run build
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Preview production build
+npm run preview
+```
 
-## Security Vulnerabilities
+## Content Management
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Content is managed via YAML files in `src/content/` collections:
 
-## License
+| Collection | Format | Description |
+|---|---|---|
+| `services` | YAML | 5 core service offerings |
+| `projects` | YAML | Project portfolio entries |
+| `blog` | MDX | Blog articles |
+| `testimonials` | YAML | Client testimonials |
+| `team` | YAML | Team member profiles |
+| `academy` | YAML | Training program details |
+| `settings` | YAML | Global site settings |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Content can also be edited via the Cloudflare Pages CMS visual editor (configured in `pages.config.json`).
+
+## API Functions
+
+- `POST /api/contact` &mdash; Contact form submission with email notification
+- `POST /api/consultation` &mdash; Free consultation booking with email notification
+
+## Deployment
+
+The project is configured for **Cloudflare Pages** via `@astrojs/cloudflare`. Connect your repo to Cloudflare Pages and it will automatically build from the `adysurve-astro` directory.
+
+Required environment variables in Cloudflare Pages:
+- `EMAIL_API_KEY` &mdash; SendGrid API key
+- `EMAIL_API_URL` &mdash; SendGrid API endpoint (default: `https://api.sendgrid.com/v3/mail/send`)
+- `FROM_EMAIL` &mdash; Sender email address
+- `TO_EMAIL` &mdash; Recipient email for form submissions
+
+---
+
+<p align="center">
+  Built with care by <a href="https://getboldideas.com" target="_blank">Bold Ideas</a>
+</p>
