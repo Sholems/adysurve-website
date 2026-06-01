@@ -1,8 +1,8 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
+import { getServices, getSiteSettings } from '../lib/content';
 
-const services = await getCollection('services');
-const settings = await getEntry('settings', 'site');
+const services = await getServices();
+const settings = await getSiteSettings();
 const s = settings?.data;
 ---
 

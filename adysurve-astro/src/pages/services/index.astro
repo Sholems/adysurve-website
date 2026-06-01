@@ -1,8 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getServices } from '../../lib/content';
 
-const services = await getCollection('services');
+const services = await getServices();
 const activeServices = services
   .filter((s) => s.data.isActive)
   .sort((a, b) => a.data.sortOrder - b.data.sortOrder);

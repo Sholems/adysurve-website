@@ -1,8 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getAcademyPrograms } from '../../lib/content';
 
-const programs = await getCollection('academy');
+const programs = await getAcademyPrograms();
 const sorted = programs.sort((a, b) => (a.data.duration === '1 Month' ? -1 : 1));
 
 const DURATION_COLORS = {

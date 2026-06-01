@@ -67,7 +67,25 @@ npm run preview
 
 ## Content Management
 
-Content is managed via YAML files in `src/content/` collections:
+Content can be managed through Sanity CMS. The Astro app falls back to YAML/MDX files in `src/content/` when Sanity is not configured.
+
+### Sanity CMS
+
+1. Create a free Sanity project at https://sanity.io/manage.
+2. Set these environment variables locally and in Cloudflare Pages:
+   - `PUBLIC_SANITY_PROJECT_ID`
+   - `PUBLIC_SANITY_DATASET` (`production` by default)
+   - `SANITY_API_TOKEN` for importing existing content
+3. Import the existing content:
+
+```bash
+cd adysurve-astro
+npm run sanity:import
+```
+
+4. Deploy after setting the Sanity env vars. The CMS will be available at `/admin`.
+
+Local fallback content is stored in `src/content/` collections:
 
 | Collection | Format | Description |
 |---|---|---|

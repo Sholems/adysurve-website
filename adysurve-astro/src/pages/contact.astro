@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getEntry, getCollection } from 'astro:content';
+import { getServices, getSiteSettings } from '../lib/content';
 
-const settings = await getEntry('settings', 'site');
-const services = await getCollection('services');
+const settings = await getSiteSettings();
+const services = await getServices();
 const s = settings?.data;
 const activeServices = services.filter((s) => s.data.isActive).sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 

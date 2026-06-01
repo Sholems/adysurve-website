@@ -1,9 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getProjects, getServices } from '../../lib/content';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
+  const projects = await getProjects();
   return projects.map((project) => ({
     params: { slug: project.id },
     props: { project },
@@ -14,14 +14,14 @@ const { project } = Astro.props;
 const { data } = project;
 
 // Get related projects (same service, excluding current)
-const allProjects = await getCollection('projects');
+const allProjects = await getProjects();
 const relatedProjects = allProjects
   .filter((p) => p.id !== project.id && p.data.isActive)
   .filter((p) => !data.serviceSlug || p.data.serviceSlug === data.serviceSlug)
   .slice(0, 3);
 
 // Get service name
-const services = await getCollection('services');
+const services = await getServices();
 const service = services.find((s) => s.id === data.serviceSlug);
 const serviceName = service?.data?.title || data.serviceSlug;
 ---

@@ -1,8 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
+import { getAcademyPrograms, getServices } from '../lib/content';
 
-const services = await getCollection('services');
-const academyPrograms = await getCollection('academy');
+const services = await getServices();
+const academyPrograms = await getAcademyPrograms();
 ---
 
 <header x-data="{ open: false }" class="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur">

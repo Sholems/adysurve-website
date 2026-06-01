@@ -1,9 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getAcademyPrograms } from '../../lib/content';
 
 export async function getStaticPaths() {
-  const programs = await getCollection('academy');
+  const programs = await getAcademyPrograms();
   return programs.map((program) => ({
     params: { slug: program.id },
     props: { program },

@@ -1,9 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getProjects, getServices } from '../../lib/content';
 
-const projects = await getCollection('projects');
-const services = await getCollection('services');
+const projects = await getProjects();
+const services = await getServices();
 
 const serviceMap = new Map(services.map((s) => [s.id, s.data.title]));
 

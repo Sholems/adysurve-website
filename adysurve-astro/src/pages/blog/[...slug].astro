@@ -1,9 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getBlogPosts } from '../../lib/content';
 
 export async function getStaticPaths() {
-  const blogPosts = await getCollection('blog');
+  const blogPosts = await getBlogPosts();
   return blogPosts.map((post) => ({
     params: { slug: post.id },
     props: { id: post.id },
@@ -13,12 +14,12 @@ export async function getStaticPaths() {
 const { id } = Astro.props;
 
 // Re-fetch the post to get render() method (not serialized through props)
-const allPosts = await getCollection('blog');
+const allPosts = await getBlogPosts();
 const post = allPosts.find((p) => p.id === id)!;
 const { data } = post;
 
-// Render the MDX content
-const { Content } = await render(post);
+const renderedContent = post.bodyHtml ? null : await render(post as any);
+const Content = renderedContent?.Content;
 
 // Get related posts (same category, excluding current)
 const relatedPosts = allPosts
@@ -73,7 +74,7 @@ const relatedPosts = allPosts
     <section class="pb-16 md:pb-28">
       <div class="container-page max-w-4xl">
         <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:font-extrabold prose-headings:text-dark-deeper prose-p:text-[var(--color-text-muted)] prose-p:leading-8 prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary-dark prose-strong:text-dark-deeper prose-img:rounded-xl">
-          <Content />
+          {post.bodyHtml ? <div set:html={post.bodyHtml} /> : Content && <Content />}
         </div>
       </div>
     </section>

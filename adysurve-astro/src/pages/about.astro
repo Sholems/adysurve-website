@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getTeamMembers } from '../lib/content';
 
-const teamMembers = await getCollection('team');
+const teamMembers = await getTeamMembers();
 const activeTeam = teamMembers
   .filter((m) => m.data.isActive)
   .sort((a, b) => a.data.sortOrder - b.data.sortOrder);

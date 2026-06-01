@@ -1,13 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection, getEntry } from 'astro:content';
+import {
+  getAcademyPrograms,
+  getBlogPosts,
+  getProjects,
+  getServices,
+  getSiteSettings,
+  getTestimonials,
+} from '../lib/content';
 
-const services = await getCollection('services');
-const testimonials = await getCollection('testimonials');
-const blogPosts = await getCollection('blog');
-const projects = await getCollection('projects');
-const academyPrograms = await getCollection('academy');
-const settings = await getEntry('settings', 'site');
+const services = await getServices();
+const testimonials = await getTestimonials();
+const blogPosts = await getBlogPosts();
+const projects = await getProjects();
+const academyPrograms = await getAcademyPrograms();
+const settings = await getSiteSettings();
 const s = settings?.data;
 
 const activeServices = services
