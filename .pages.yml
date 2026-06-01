@@ -1,0 +1,299 @@
+media:
+  input: adysurve-astro/public/images
+  output: /images
+
+content:
+  - name: settings
+    label: Site Settings
+    type: file
+    path: adysurve-astro/src/content/settings/site.yaml
+    format: yaml
+    fields:
+      - name: siteName
+        label: Site Name
+        type: string
+      - name: siteTagline
+        label: Tagline
+        type: string
+      - name: siteEmail
+        label: Email
+        type: string
+      - name: sitePhone
+        label: Phone
+        type: string
+      - name: siteAddress
+        label: Address
+        type: text
+      - name: siteWhatsapp
+        label: WhatsApp Number
+        type: string
+      - name: businessHours
+        label: Business Hours
+        type: string
+      - name: heroHeadline
+        label: Hero Headline
+        type: string
+      - name: heroSubheadline
+        label: Hero Subheadline
+        type: string
+      - name: aboutSummary
+        label: About Summary
+        type: text
+      - name: facebookUrl
+        label: Facebook URL
+        type: string
+      - name: twitterUrl
+        label: Twitter/X URL
+        type: string
+      - name: linkedinUrl
+        label: LinkedIn URL
+        type: string
+      - name: instagramUrl
+        label: Instagram URL
+        type: string
+      - name: youtubeUrl
+        label: YouTube URL
+        type: string
+      - name: tiktokUrl
+        label: TikTok URL
+        type: string
+      - name: googleAnalyticsId
+        label: Google Analytics ID
+        type: string
+
+  - name: services
+    label: Services
+    type: collection
+    path: adysurve-astro/src/content/services
+    format: yaml
+    filename: "{primary}.yaml"
+    view:
+      primary: title
+      fields: [shortDescription, isActive, sortOrder]
+      sort: sortOrder
+      order: asc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: icon
+        label: Icon
+        type: string
+      - name: featuredImage
+        label: Featured Image
+        type: image
+      - name: shortDescription
+        label: Short Description
+        type: text
+        required: true
+      - name: fullDescription
+        label: Full Description
+        type: rich-text
+        required: true
+      - name: isActive
+        label: Active
+        type: boolean
+      - name: sortOrder
+        label: Sort Order
+        type: number
+      - name: metaTitle
+        label: SEO Title
+        type: string
+      - name: metaDescription
+        label: SEO Description
+        type: text
+
+  - name: projects
+    label: Projects
+    type: collection
+    path: adysurve-astro/src/content/projects
+    format: yaml
+    filename: "{primary}.yaml"
+    view:
+      primary: title
+      fields: [serviceSlug, location, isFeatured, isActive]
+      sort: title
+      order: asc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: serviceSlug
+        label: Service Slug
+        type: string
+        required: true
+      - name: clientName
+        label: Client Name
+        type: string
+      - name: location
+        label: Location
+        type: string
+      - name: featuredImage
+        label: Featured Image
+        type: image
+      - name: galleryImages
+        label: Gallery Images
+        type: image
+        list: true
+      - name: description
+        label: Description
+        type: text
+        required: true
+      - name: isFeatured
+        label: Featured
+        type: boolean
+      - name: isActive
+        label: Active
+        type: boolean
+      - name: metaTitle
+        label: SEO Title
+        type: string
+      - name: metaDescription
+        label: SEO Description
+        type: text
+
+  - name: testimonials
+    label: Testimonials
+    type: collection
+    path: adysurve-astro/src/content/testimonials
+    format: yaml
+    filename: "{primary}.yaml"
+    view:
+      primary: clientName
+      fields: [clientTitle, clientCompany, rating, isActive]
+      sort: clientName
+      order: asc
+    fields:
+      - name: clientName
+        label: Client Name
+        type: string
+        required: true
+      - name: clientTitle
+        label: Client Title
+        type: string
+      - name: clientCompany
+        label: Company
+        type: string
+      - name: content
+        label: Testimonial Content
+        type: text
+        required: true
+      - name: rating
+        label: Rating
+        type: number
+      - name: isActive
+        label: Active
+        type: boolean
+
+  - name: team
+    label: Team Members
+    type: collection
+    path: adysurve-astro/src/content/team
+    format: yaml
+    filename: "{primary}.yaml"
+    view:
+      primary: name
+      fields: [role, isActive, sortOrder]
+      sort: sortOrder
+      order: asc
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: role
+        label: Role
+        type: string
+        required: true
+      - name: photo
+        label: Photo
+        type: image
+      - name: bio
+        label: Bio
+        type: text
+      - name: isActive
+        label: Active
+        type: boolean
+      - name: sortOrder
+        label: Sort Order
+        type: number
+
+  - name: academy
+    label: Academy
+    type: collection
+    path: adysurve-astro/src/content/academy
+    format: yaml
+    filename: "{primary}.yaml"
+    view:
+      primary: title
+      fields: [shortDescription, isActive, sortOrder]
+      sort: sortOrder
+      order: asc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: shortDescription
+        label: Short Description
+        type: text
+      - name: featuredImage
+        label: Featured Image
+        type: image
+      - name: isActive
+        label: Active
+        type: boolean
+      - name: sortOrder
+        label: Sort Order
+        type: number
+
+  - name: blog
+    label: Blog Posts
+    type: collection
+    path: adysurve-astro/src/content/blog
+    format: yaml-frontmatter
+    filename: "{primary}.mdx"
+    view:
+      primary: title
+      fields: [category, publishedAt, isPublished, isFeatured]
+      sort: publishedAt
+      order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: category
+        label: Category
+        type: string
+      - name: featuredImage
+        label: Featured Image
+        type: image
+      - name: excerpt
+        label: Excerpt
+        type: text
+        required: true
+      - name: isFeatured
+        label: Featured
+        type: boolean
+      - name: isPublished
+        label: Published
+        type: boolean
+      - name: publishedAt
+        label: Publish Date
+        type: date
+      - name: metaTitle
+        label: SEO Title
+        type: string
+      - name: metaDescription
+        label: SEO Description
+        type: text
+      - name: body
+        label: Body
+        type: rich-text
+
+settings:
+  content:
+    merge: true
