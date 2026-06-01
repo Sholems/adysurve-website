@@ -5,6 +5,8 @@ import { getCollection, getEntry } from 'astro:content';
 const services = await getCollection('services');
 const testimonials = await getCollection('testimonials');
 const blogPosts = await getCollection('blog');
+const projects = await getCollection('projects');
+const academyPrograms = await getCollection('academy');
 const settings = await getEntry('settings', 'site');
 const s = settings?.data;
 
@@ -14,6 +16,12 @@ const activeServices = services
 
 const activeTestimonials = testimonials.filter((t) => t.data.isActive);
 
+const featuredProjects = projects
+  .filter((p) => p.data.isActive && p.data.isFeatured)
+  .slice(0, 3);
+
+const academySorted = academyPrograms.sort((a, b) => (a.data.duration === '1 Month' ? -1 : 1));
+
 const recentPosts = blogPosts
   .filter((p) => p.data.isPublished)
   .sort((a, b) => {
@@ -22,6 +30,22 @@ const recentPosts = blogPosts
     return bDate.getTime() - aDate.getTime();
   })
   .slice(0, 3);
+
+const ACADEMY_ICONS = {
+  'cctv-security': 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  'network-security': 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+  'solar-renewable-energy': 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z',
+  'it-essentials': 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  'graphic-design-media': 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
+};
+
+const ACADEMY_COLORS = {
+  '1 Month': 'bg-amber-100 text-amber-800',
+  '3 Months': 'bg-blue-100 text-blue-800',
+  '6 Months': 'bg-purple-100 text-purple-800',
+};
+
+const serviceMap = new Map(activeServices.map((s) => [s.id, s.data.title]));
 ---
 
 <Layout
@@ -197,6 +221,105 @@ const recentPosts = blogPosts
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Megabyte Academy Section -->
+  <section class="relative overflow-hidden bg-white py-16 md:py-28">
+    <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-light to-white"></div>
+    <div class="container-page relative">
+      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div>
+          <p class="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-widest text-primary">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+            Megabyte Academy
+          </p>
+          <h2 class="mt-4 max-w-3xl font-display text-3xl font-extrabold leading-tight text-dark-deeper md:text-5xl">
+            Practical training programs from a training arm of <span class="text-primary-dark">ADYSURVE LTD</span>
+          </h2>
+        </div>
+        <div class="lg:pb-2">
+          <p class="max-w-2xl leading-8 text-dark/68">Megabyte Academy helps beginners, professionals, entrepreneurs, and corporate teams build hands-on skills across IT, security, renewable energy, and digital media.</p>
+          <a href="/academy/network-security" class="mt-6 inline-flex items-center gap-2 rounded-full bg-dark-deeper px-6 py-3 text-sm font-extrabold text-white transition hover:bg-primary hover:text-dark-deeper">
+            Explore Training Programs
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-5">
+        {academySorted.map((program) => {
+          const iconPath = ACADEMY_ICONS[program.id] || ACADEMY_ICONS['network-security'];
+          const durationClass = ACADEMY_COLORS[program.data.duration] || 'bg-gray-100 text-gray-800';
+          return (
+            <article class="group relative flex min-h-0 flex-col overflow-hidden rounded-lg border border-black/10 bg-light p-5 shadow-sm transition hover:-translate-y-2 hover:bg-dark-deeper hover:text-white hover:shadow-2xl hover:shadow-black/12 sm:min-h-[330px] sm:p-6">
+              <div class="absolute right-0 top-0 h-16 w-16 rounded-bl-[2rem] bg-white transition group-hover:bg-primary/15"></div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-primary-dark shadow-sm transition group-hover:bg-primary group-hover:text-dark-deeper">
+                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={iconPath} />
+                </svg>
+              </div>
+              <div class="relative mt-7">
+                <span class={`rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-widest ${durationClass} transition group-hover:bg-white/10 group-hover:text-primary-light`}>{program.data.duration}</span>
+                <h3 class="mt-4 font-display text-xl font-extrabold leading-tight text-dark-deeper transition group-hover:text-white">{program.data.title}</h3>
+                <p class="mt-4 text-sm leading-7 text-dark/65 transition group-hover:text-white/70">{program.data.subtitle}</p>
+              </div>
+              <a href={`/academy/${program.id}`} class="relative mt-auto inline-flex items-center gap-2 pt-7 text-sm font-extrabold text-primary-dark transition group-hover:text-primary-light">
+                View Program
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  {featuredProjects.length > 0 && (
+    <section class="bg-light pb-16 pt-10 md:pb-28 md:pt-14">
+      <div class="container-page">
+        <div class="mx-auto max-w-3xl text-center">
+          <p class="text-sm font-extrabold uppercase tracking-widest text-primary">Portfolio</p>
+          <h2 class="mt-3 font-display text-3xl font-extrabold leading-tight text-dark-deeper md:text-5xl">Featured projects</h2>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          {featuredProjects.map((project) => (
+            <a href={`/projects/${project.id}`} class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg shadow-black/5 transition hover:-translate-y-1 hover:shadow-xl">
+              {project.data.featuredImage && (
+                <div class="aspect-[16/10] overflow-hidden">
+                  <img src={project.data.featuredImage} alt="" width="600" height="375" loading="lazy" class="h-full w-full object-cover transition group-hover:scale-105" />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-5 sm:p-6">
+                <div class="flex items-center gap-2 text-xs">
+                  {project.data.serviceSlug && serviceMap.has(project.data.serviceSlug) && (
+                    <span class="rounded-md bg-primary/10 px-2 py-1 font-bold uppercase tracking-wider text-primary-dark">{serviceMap.get(project.data.serviceSlug)}</span>
+                  )}
+                  {project.data.location && (
+                    <span class="text-dark/50">{project.data.location}</span>
+                  )}
+                </div>
+                <h3 class="mt-3 font-display text-lg font-extrabold leading-snug text-dark-deeper group-hover:text-primary-dark">{project.data.title}</h3>
+                <p class="mt-2 flex-1 text-sm leading-7 text-dark/65 line-clamp-2">{project.data.description}</p>
+                <span class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:text-primary-dark">
+                  View Project
+                  <svg class="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="mt-10 text-center">
+          <a href="/projects" class="inline-flex items-center gap-2 rounded-full border border-dark-deeper px-7 py-4 text-sm font-extrabold text-dark-deeper transition hover:border-primary hover:text-primary">
+            View All Projects
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
         </div>
       </div>
     </section>

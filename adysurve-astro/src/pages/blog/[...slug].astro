@@ -1,22 +1,28 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const blogPosts = await getCollection('blog');
   return blogPosts.map((post) => ({
     params: { slug: post.id },
-    props: { post },
+    props: { id: post.id },
   }));
 }
 
-const { post } = Astro.props;
+const { id } = Astro.props;
+
+// Re-fetch the post to get render() method (not serialized through props)
+const allPosts = await getCollection('blog');
+const post = allPosts.find((p) => p.id === id)!;
 const { data } = post;
 
+// Render the MDX content
+const { Content } = await render(post);
+
 // Get related posts (same category, excluding current)
-const allPosts = await getCollection('blog');
 const relatedPosts = allPosts
-  .filter((p) => p.id !== post.id && p.data.isPublished)
+  .filter((p) => p.id !== id && p.data.isPublished)
   .filter((p) => !data.category || p.data.category === data.category)
   .sort((a, b) => {
     const aDate = a.data.publishedAt ?? new Date(0);
@@ -67,7 +73,7 @@ const relatedPosts = allPosts
     <section class="pb-16 md:pb-28">
       <div class="container-page max-w-4xl">
         <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:font-extrabold prose-headings:text-dark-deeper prose-p:text-[var(--color-text-muted)] prose-p:leading-8 prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary-dark prose-strong:text-dark-deeper prose-img:rounded-xl">
-          <slot />
+          <Content />
         </div>
       </div>
     </section>
