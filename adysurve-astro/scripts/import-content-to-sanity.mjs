@@ -8,6 +8,7 @@ const dataset = process.env.PUBLIC_SANITY_DATASET || 'production';
 const token = process.env.SANITY_API_TOKEN;
 const root = process.cwd();
 const contentRoot = path.join(root, 'src', 'content');
+const shouldReset = process.argv.includes('--reset');
 
 if (!projectId || !token) {
   console.error('Set PUBLIC_SANITY_PROJECT_ID and SANITY_API_TOKEN before running this importer.');
@@ -29,6 +30,12 @@ const typeMap = {
   team: 'teamMember',
   academy: 'academyProgram',
 };
+
+const managedTypes = [
+  'siteSettings',
+  ...Object.values(typeMap),
+  'blogPost',
+];
 
 const slugify = (value) =>
   String(value || '')
@@ -123,16 +130,65 @@ async function main() {
 
   docs.push(...(await readBlogPosts()));
 
+  if (shouldReset) {
+    const staleDocs = await client.fetch('*[_type in $types]._id', { types: managedTypes });
+    if (staleDocs.length > 0) {
+      let deleteTransaction = client.transaction();
+      for (const id of staleDocs) {
+        deleteTransaction = deleteTransaction.delete(id);
+      }
+      try {
+        await deleteTransaction.commit();
+      } catch (error) {
+        const remainingDocs = await client.fetch('*[_type in $types]._id', { types: managedTypes });
+        if (remainingDocs.length > 0) {
+          throw error;
+        }
+        console.warn('Delete response was interrupted, but the managed documents were removed.');
+      }
+      console.log(`Deleted ${staleDocs.length} managed documents from Sanity dataset "${dataset}".`);
+    } else {
+      console.log(`No managed documents found to delete in Sanity dataset "${dataset}".`);
+    }
+  }
+
   const transaction = client.transaction();
   for (const doc of docs) {
     transaction.createOrReplace(doc);
   }
 
-  await transaction.commit();
+  await commitWithRetry(transaction);
   console.log(`Imported ${docs.length} documents into Sanity dataset "${dataset}".`);
 }
 
 main().catch((error) => {
-  console.error(error);
+  console.error(formatError(error));
   process.exit(1);
 });
+
+async function commitWithRetry(transaction, attempts = 3) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await transaction.commit();
+    } catch (error) {
+      lastError = error;
+      if (!isRetryableNetworkError(error) || attempt === attempts) {
+        throw error;
+      }
+      console.warn(`Sanity mutation failed with ${error.code || error.name}; retrying (${attempt}/${attempts - 1})...`);
+      await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
+    }
+  }
+  throw lastError;
+}
+
+function isRetryableNetworkError(error) {
+  return ['ECONNRESET', 'ETIMEDOUT', 'EAI_AGAIN'].includes(error?.code);
+}
+
+function formatError(error) {
+  if (!error) return 'Unknown Sanity import error.';
+  const parts = [error.name, error.code, error.message].filter(Boolean);
+  return parts.join(': ') || String(error);
+}

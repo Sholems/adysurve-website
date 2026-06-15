@@ -18,6 +18,7 @@ Thumbs.db
 
 # Astro build cache
 .astro/
+.wrangler/
 
 # logs
 *.log

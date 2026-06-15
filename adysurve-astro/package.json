@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "sanity:import": "node scripts/import-content-to-sanity.mjs"
+    "sanity:import": "node --env-file=.env scripts/import-content-to-sanity.mjs",
+    "sanity:reset": "node --env-file=.env scripts/import-content-to-sanity.mjs --reset"
   },
   "keywords": [
     "adysurve",
