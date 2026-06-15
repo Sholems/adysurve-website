@@ -4,9 +4,11 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sanity from '@sanity/astro';
+import { loadEnv } from 'vite';
 
-const sanityProjectId = process.env.PUBLIC_SANITY_PROJECT_ID;
-const sanityDataset = process.env.PUBLIC_SANITY_DATASET || 'production';
+const env = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
+const sanityProjectId = env.PUBLIC_SANITY_PROJECT_ID || process.env.PUBLIC_SANITY_PROJECT_ID;
+const sanityDataset = env.PUBLIC_SANITY_DATASET || process.env.PUBLIC_SANITY_DATASET || 'production';
 const sanityIntegrations = sanityProjectId
   ? [
       sanity({
@@ -14,6 +16,7 @@ const sanityIntegrations = sanityProjectId
         dataset: sanityDataset,
         useCdn: false,
         studioBasePath: '/admin',
+        studioRouterHistory: 'hash',
       }),
       react(),
     ]
@@ -21,7 +24,7 @@ const sanityIntegrations = sanityProjectId
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://adysurve.com',
+  site: 'https://www.adysurve.com',
   output: 'static',
   adapter: cloudflare(),
   integrations: [sitemap(), mdx(), ...sanityIntegrations],
