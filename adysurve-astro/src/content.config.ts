@@ -54,7 +54,7 @@ const projects = defineCollection({
   loader: glob({ pattern: '**/[^_]*.yaml', base: './src/content/projects' }),
   schema: seoSchema.extend({
     title: z.string(),
-    serviceSlug: z.string(),
+    serviceSlug: z.string().optional(),
     clientName: z.string().optional(),
     location: z.string().optional(),
     featuredImage: imageSchema,

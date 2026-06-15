@@ -44,6 +44,7 @@ const ACADEMY_ICONS = {
   'solar-renewable-energy': 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z',
   'it-essentials': 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
   'graphic-design-media': 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
+  'ai-fullstack-web-development': 'M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z',
 };
 
 const ACADEMY_COLORS = {
@@ -251,7 +252,7 @@ const serviceMap = new Map(activeServices.map((s) => [s.id, s.data.title]));
           </h2>
         </div>
         <div class="lg:pb-2">
-          <p class="max-w-2xl leading-8 text-dark/68">Megabyte Academy helps beginners, professionals, entrepreneurs, and corporate teams build hands-on skills across IT, security, renewable energy, and digital media.</p>
+          <p class="max-w-2xl leading-8 text-dark/68">Megabyte Academy helps beginners, professionals, entrepreneurs, and corporate teams build hands-on skills across IT, security, renewable energy, digital media, and full stack web development.</p>
           <a href="/academy/network-security" class="mt-6 inline-flex items-center gap-2 rounded-full bg-dark-deeper px-6 py-3 text-sm font-extrabold text-white transition hover:bg-primary hover:text-dark-deeper">
             Explore Training Programs
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
@@ -259,7 +260,7 @@ const serviceMap = new Map(activeServices.map((s) => [s.id, s.data.title]));
         </div>
       </div>
 
-      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-5">
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
         {academySorted.map((program) => {
           const iconPath = ACADEMY_ICONS[program.id] || ACADEMY_ICONS['network-security'];
           const durationClass = ACADEMY_COLORS[program.data.duration] || 'bg-gray-100 text-gray-800';

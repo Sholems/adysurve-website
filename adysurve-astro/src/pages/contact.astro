@@ -62,7 +62,7 @@ const CONSULTATION_MODES = ['Phone Call', 'WhatsApp', 'Video Call', 'Office Visi
         x-data="{
           name: '', email: '', phone: '', service_interest: '',
           preferred_date: '', preferred_time: '', meeting_mode: '',
-          notes: '', submitted: false, error: '', errors: [],
+          notes: '', website: '', submitted: false, error: '', errors: [],
           submitting: false,
           async submitForm() {
             this.submitting = true;
@@ -78,7 +78,7 @@ const CONSULTATION_MODES = ['Phone Call', 'WhatsApp', 'Video Call', 'Office Visi
                   preferred_date: this.preferred_date,
                   preferred_time: this.preferred_time,
                   meeting_mode: this.meeting_mode, notes: this.notes,
-                  website: '',
+                  website: this.website,
                 }),
               });
               const data = await res.json();
@@ -191,7 +191,7 @@ const CONSULTATION_MODES = ['Phone Call', 'WhatsApp', 'Video Call', 'Office Visi
       <div
         x-data="{
           name: '', email: '', phone: '', service: '',
-          message: '', submitted: false, error: '', submitting: false,
+          message: '', website: '', submitted: false, error: '', submitting: false,
           async submitForm() {
             this.submitting = true;
             this.error = '';
@@ -203,7 +203,7 @@ const CONSULTATION_MODES = ['Phone Call', 'WhatsApp', 'Video Call', 'Office Visi
                   name: this.name, email: this.email, phone: this.phone,
                   service_interest: this.service, message: this.message,
                   subject: `Website enquiry from ${this.name}`,
-                  website: '',
+                  website: this.website,
                 }),
               });
               const data = await res.json();

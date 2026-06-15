@@ -46,7 +46,6 @@
   },
   "required": [
     "title",
-    "serviceSlug",
     "description"
   ]
 }

@@ -1,0 +1,111 @@
+title: "AI-Powered Full Stack Web Development Training"
+subtitle: "Build modern web applications with frontend, backend, DevOps, and AI integration skills"
+kicker: "Become a Job-Ready Full Stack Developer with ADYSURVE LTD"
+service: "AI-Powered Full Stack Web Development Training Program"
+duration: "3 Months"
+metaTitle: "AI-Powered Full Stack Web Development Training | Megabyte Academy"
+metaDescription: "Join Megabyte Academy, a training arm of ADYSURVE LTD, for a practical 3-month Full Stack Web Development Training covering frontend, backend, DevOps, and AI-powered development."
+facts:
+  - icon: "heroicon-o-wrench-screwdriver"
+    label: "Training Format"
+    value: "Practical & Hands-on"
+  - icon: "heroicon-o-clock"
+    label: "Sessions"
+    value: "2 Sessions / Week"
+  - icon: "heroicon-o-document-check"
+    label: "Certification"
+    value: "Certificate of Completion Provided"
+intro:
+  - "The digital economy runs on web applications, and businesses everywhere need skilled full stack developers who can build, deploy, and maintain modern digital solutions. At ADYSURVE LTD, we are excited to introduce our <strong class=\"text-white\">3-Month AI-Powered Full Stack Web Development Training Program</strong> — a practical, hands-on program designed for beginners, students, entrepreneurs, career changers, and corporate teams who want to master modern web development with the power of AI tools."
+  - "This program combines frontend design, backend logic, database management, DevOps practices, and AI-assisted development workflows. You will learn to build complete web applications from scratch, deploy them to the cloud, and leverage AI tools to accelerate development and solve real-world problems."
+  - "Whether you dream of becoming a freelance web developer, launching your own SaaS product, or joining a tech team, this training will give you the practical skills, confidence, and portfolio projects you need to succeed in today's fast-growing tech industry."
+why:
+  label: "Why Choose ADYSURVE LTD Training?"
+  heading: "Learn by building real projects."
+  text: "At ADYSURVE LTD, we believe the best way to learn web development is by building real projects. Our training emphasizes hands-on coding, live demonstrations, project-based learning, and AI-assisted development techniques that prepare you for actual industry workflows."
+  items:
+    - "Practical project-based curriculum"
+    - "Modern frontend and backend technologies"
+    - "AI-assisted coding workflows"
+    - "Beginner-friendly learning structure"
+    - "Real-world project portfolio"
+    - "Experienced instructors and developers"
+    - "Career-focused training approach"
+    - "Continuous mentorship and support"
+    - "Cloud deployment and DevOps practices"
+    - "Certificate of completion after training"
+curriculum:
+  heading: "A 3-month curriculum covering frontend, backend, DevOps, and AI-powered development."
+  text: "Our 3-month program is structured into six comprehensive modules, with 2 practical sessions per week, covering everything from fundamentals to deployment."
+  modules:
+    - - "Module 1: Web Development Fundamentals"
+      - ["Introduction to web technologies (HTML, CSS, JavaScript)", "Understanding how the internet and web servers work", "Setting up a professional development environment", "Version control with Git and GitHub", "Building your first responsive web page", "Introduction to AI coding assistants"]
+    - - "Module 2: Frontend Development"
+      - ["Modern JavaScript (ES6+) and TypeScript basics", "React.js — components, state, and props", "Building interactive user interfaces", "Responsive design with Tailwind CSS", "Form handling and validation", "Consuming REST APIs in the frontend", "AI-powered frontend development workflows"]
+    - - "Module 3: Backend Development"
+      - ["Node.js and Express.js fundamentals", "Building RESTful APIs from scratch", "Database design with SQL and MongoDB", "User authentication and authorization", "File uploads and data handling", "API documentation and testing", "AI-assisted backend code generation"]
+    - - "Module 4: Full Stack Integration"
+      - ["Connecting frontend to backend seamlessly", "State management in full stack applications", "Building a complete CRUD application", "Error handling and debugging strategies", "Performance optimization techniques", "Building a capstone project — part 1"]
+    - - "Module 5: DevOps & Deployment"
+      - ["Introduction to cloud platforms (Vercel, Netlify, Render)", "CI/CD pipelines and automated deployments", "Environment variables and configuration management", "Domain setup and SSL certificates", "Monitoring and logging basics", "Building a capstone project — part 2"]
+    - - "Module 6: AI-Powered Development & Career Readiness"
+      - ["Leveraging AI tools for code generation and debugging", "Building AI-powered features into web applications", "Prompt engineering for developers", "Portfolio building and project showcase", "Freelancing and job opportunities in web development", "Interview preparation and career roadmap"]
+corporate:
+  label: "Corporate Training Solutions"
+  heading: "Custom full stack web development training for organizations."
+  paragraphs:
+    - "ADYSURVE LTD also provides customized corporate full stack web development training for businesses, schools, organizations, and institutions. Our corporate training programs are designed to upskill your development team, accelerate digital transformation, and build in-house web development capabilities."
+    - "We can conduct training:"
+  methods:
+    - "On-site at your organization"
+    - "At our training center"
+    - "Hybrid or online sessions"
+  panelHeading: "Corporate Training Areas Include:"
+  items:
+    - "Frontend development with React"
+    - "Backend development with Node.js"
+    - "Database management and design"
+    - "DevOps and cloud deployment"
+    - "AI-powered development workflows"
+    - "Team upskilling and capacity building"
+cards:
+  apply:
+    heading: "Who Can Apply?"
+    intro: "This training program is suitable for:"
+    items:
+      - "Beginners with no coding experience"
+      - "Students and recent graduates"
+      - "Entrepreneurs and business owners"
+      - "Career changers interested in tech"
+      - "Freelancers seeking new skills"
+      - "Corporate staff and teams"
+      - "Anyone passionate about web development"
+    note: "No prior programming experience is required — just a computer and a willingness to learn."
+  benefits:
+    heading: "Benefits of the Training"
+    intro: "By the end of the program, participants will:"
+    items:
+      - "Build complete full stack web applications from scratch"
+      - "Master modern frontend and backend technologies"
+      - "Deploy applications to the cloud like a professional"
+      - "Leverage AI tools to accelerate development"
+      - "Create a professional portfolio of real projects"
+      - "Gain confidence in full stack development workflows"
+      - "Receive professional training certification"
+  careers:
+    heading: "Career Opportunities After Training"
+    intro: "Graduates of the program can work as:"
+    items:
+      - "Junior Full Stack Developer"
+      - "Frontend Developer"
+      - "Backend Developer"
+      - "Web Application Developer"
+      - "Freelance Web Developer"
+      - "SaaS Product Builder"
+      - "Technical Support Specialist (Web)"
+      - "Startup Technical Co-founder"
+cta:
+  heading: "Join ADYSURVE LTD today and start building the web."
+  paragraphs:
+    - "The demand for skilled full stack web developers continues to grow as businesses across every industry need powerful digital solutions. This is your opportunity to gain practical, job-ready skills that can open doors to employment, freelancing, and entrepreneurship."
+    - "Join ADYSURVE LTD today and take the first step toward becoming a confident, capable full stack web developer equipped with AI-powered workflows and modern industry practices."

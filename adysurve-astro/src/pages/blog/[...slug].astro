@@ -17,6 +17,7 @@ const { id } = Astro.props;
 const allPosts = await getBlogPosts();
 const post = allPosts.find((p) => p.id === id)!;
 const { data } = post;
+const pageTitle = data.metaTitle || `${data.title} | ADYSURVE LTD`;
 
 const renderedContent = post.bodyHtml ? null : await render(post as any);
 const Content = renderedContent?.Content;
@@ -34,7 +35,7 @@ const relatedPosts = allPosts
 ---
 
 <Layout
-  title={`${data.metaTitle || data.title} | ADYSURVE LTD`}
+  title={pageTitle}
   description={data.metaDescription || data.excerpt}
   image={data.featuredImage}
 >
