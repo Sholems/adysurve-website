@@ -3,12 +3,14 @@ import { createClient } from '@sanity/client';
 
 const projectId = process.env.PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.PUBLIC_SANITY_DATASET || 'production';
+const token = process.env.SANITY_API_TOKEN;
 const useSanity = Boolean(projectId);
 
 const sanityClient = projectId
   ? createClient({
       projectId,
       dataset,
+      token,
       apiVersion: '2026-06-01',
       useCdn: false,
     })
@@ -33,8 +35,13 @@ const entry = (doc: Record<string, any>): AnyEntry => {
 
 const fetchEntries = async (query: string) => {
   if (!sanityClient) return null;
-  const docs = await sanityClient.fetch(query);
-  return docs.map(entry);
+  try {
+    const docs = await sanityClient.fetch(query);
+    return docs.length > 0 ? docs.map(entry) : null;
+  } catch (error) {
+    console.warn(`Sanity fetch failed; falling back to local content: ${formatSanityError(error)}`);
+    return null;
+  }
 };
 
 export async function getServices() {
@@ -132,11 +139,21 @@ export async function getBlogPosts() {
 
 export async function getSiteSettings() {
   if (sanityClient) {
-    const doc = await sanityClient.fetch(`*[_type == "siteSettings"][0]`);
-    if (doc) return { id: 'site', data: doc };
+    try {
+      const doc = await sanityClient.fetch(`*[_type == "siteSettings"] | order(_updatedAt desc)[0]`);
+      if (doc) return { id: 'site', data: doc };
+    } catch (error) {
+      console.warn(`Sanity settings fetch failed; falling back to local settings: ${formatSanityError(error)}`);
+    }
   }
 
   return getEntry('settings', 'site');
+}
+
+function formatSanityError(error: unknown) {
+  if (!error || typeof error !== 'object') return String(error);
+  const e = error as { message?: string; statusCode?: number; code?: string };
+  return [e.statusCode, e.code, e.message].filter(Boolean).join(' ');
 }
 
 function parseJsonField(value: unknown, fallback: unknown) {
